@@ -1,0 +1,36 @@
+{
+  "name": "techshow",
+  "version": "0.0.1",
+  "description": "A presentation server and web component collection for tech presentations that want embedded live demos",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "show": "vite preview",
+    "lint": "denolint",
+    "prestart": "node ./src/scripts/generate-slide-routes.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marvin89/techshow.git"
+  },
+  "keywords": [
+    "presentation",
+    "tech",
+    "slides"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marvin89/techshow/issues"
+  },
+  "homepage": "https://github.com/marvin89/techshow#readme",
+  "devDependencies": {
+    "@node-rs/deno-lint": "^1.10.3",
+    "vite": "^2.6.14"
+  },
+  "dependencies": {
+    "@vaadin/router": "^1.7.4"
+  }
+}
