@@ -23,5 +23,5 @@ A presentation server and web component collection for tech presentations that w
 - [x] Slides can be loaded from external user provided files
 - [x] Slides have a basic template
 - [x] Slides are simple and easy to create and modify
-- [ ] Slides can be individualy styled
+- [x] Slides can be individualy styled
 - [ ] Users can define own templates
