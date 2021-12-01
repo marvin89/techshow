@@ -1,12 +1,11 @@
 import { Router } from "@vaadin/router";
-import slides from "./slides/_slides";
+import slides from "./slides/.generated/_slides";
 
-const CONTENT_SLIDES = slides.filter((s) => s.path !== "(.*)");
+const CONTENT_SLIDES = slides?.filter((s) => s.path !== "(.*)");
 
 class App extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
     this.router = new Router();
     this.router.setRoutes(slides);
     this.#setEventListeners();
@@ -14,7 +13,7 @@ class App extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this.router.setOutlet(this.shadowRoot.querySelector("main"));
+    this.router.setOutlet(this.querySelector("main"));
   }
 
   disconnectedCallback() {
@@ -22,15 +21,23 @@ class App extends HTMLElement {
   }
 
   render() {
-    this.shadowRoot.innerHTML = /* html */ `<main></main>`;
+    this.innerHTML = /* html */ `
+      <main></main>
+      <footer>
+        <span>TechShow</span>
+        <span id="slide-number">1</span>
+      </footer>
+    `;
   }
 
   #setEventListeners() {
     window.addEventListener("keyup", this.#onKeyUp.bind(this));
+    window.addEventListener("vaadin-router-location-changed", this.#onRouteChanged.bind(this));
   }
 
   #cleanEventListeners() {
     window.removeEventListener("keyup", this.#onKeyUp.bind(this));
+    window.addEventListener("vaadin-router-location-changed", this.#onRouteChanged.bind(this));
   }
 
   #onKeyUp(event) {
@@ -57,6 +64,12 @@ class App extends HTMLElement {
     if (!forward && currentSlideIndex > 0) {
       Router.go(CONTENT_SLIDES[currentSlideIndex - 1].path);
     }
+  }
+
+  #onRouteChanged(event) {
+    const slideNumber =
+      CONTENT_SLIDES.findIndex((slide) => slide.path === event.detail.location.pathname) + 1;
+    this.querySelector("#slide-number").textContent = slideNumber;
   }
 }
 

@@ -8,8 +8,7 @@
     "start": "vite",
     "build": "vite build",
     "show": "vite preview",
-    "lint": "denolint",
-    "prestart": "node ./src/scripts/generate-slide-routes.js"
+    "lint": "denolint"
   },
   "repository": {
     "type": "git",
@@ -28,6 +27,7 @@
   "homepage": "https://github.com/marvin89/techshow#readme",
   "devDependencies": {
     "@node-rs/deno-lint": "^1.10.3",
+    "chokidar": "^3.5.2",
     "vite": "^2.6.14"
   },
   "dependencies": {
